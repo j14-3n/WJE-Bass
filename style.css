@@ -1,0 +1,85 @@
+header {
+  font-family: "Brush Script MT", cursive;
+  background-color: #af604f;
+  color: #efe4d2;
+  text-align: center;
+  padding: 20px;
+  font-size: 30px;
+}
+
+body {
+  background-color: #af604f;
+  color: #efe4d2;
+  font-family: "Georgia", serif;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h2 {
+  font-family: "Georgia", serif;
+  color: #584849;
+  text-align: center;
+}
+
+article {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  color: #584849;
+  padding: 20px;
+  text-align: left;
+  border-radius: 10px;
+  font-family: "Georgia", serif;
+}
+
+section {
+  background-color: #efe4d2;
+  color: #584849;
+  padding: 20px;
+  text-align: center;
+  font-family: "Georgia", serif;
+  line-height: 1.6;
+}
+
+.section2 {
+  background-color: #efe4d2;
+  color: #584849;
+  padding: 20px;
+  text-align: left;
+  font-family: "Georgia", serif;
+}
+
+.section3 {
+  background-color: #e29068;
+  color: #efe4d2;
+  padding: 20px;
+  text-align: left;
+  font-family: "Georgia", serif;
+}
+
+.section4 {
+  background-color: #af604f;
+  color: #efe4d2;
+  padding: 20px;
+  text-align: left;
+  font-family: "Georgia", serif;
+}
+
+button {
+  font-family: "Georgia", serif;
+  background-color: #efe4d2;
+  color: #584849;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+dialog {
+  background-color: #efe4d2;
+  color: #584849;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
