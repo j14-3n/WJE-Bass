@@ -51,3 +51,47 @@ rondoFestDialog.addEventListener('click', (event) => {
         rondoFestDialog.close();
     }
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const observerOptions = {
+        root: null,       // Uses the browser viewport
+        rootMargin: '0px',
+        threshold: 0.15   // Triggers when 15% of the section is visible
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Scrolled INTO view: Fade up and in
+                entry.target.classList.add('is-visible');
+            } else {
+                // Scrolled AWAY: Remove class to fade back out / reset 
+                // (Delete this 'else' block if you only want it to animate once)
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, observerOptions);
+
+    // Target your section
+    const section = document.querySelector('.fade-section');
+    observer.observe(section);
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            } else {
+                // Optional: remove class if you want it to fade out when scrolling away
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.2 // Triggers when 20% of the section is visible
+    });
+
+    document.querySelectorAll('.scroll-section').forEach(section => {
+        observer.observe(section);
+    });
+});
