@@ -1,10 +1,92 @@
-header {
-  font-family: "Brush Script MT", cursive;
+@import url('https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap');
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes slideUpFade {
+    0% {
+        opacity: 0;                 /* Starts completely invisible */
+        transform: translateY(30px); /* Starts 30 pixels lower than its final position */
+    }
+    100% {
+        opacity: 1;                 /* Fully visible */
+        transform: translateY(0px);  /* Settles into its natural position */
+    }
+}
+
+.fade-in {
+  animation: slideUpFade 0.8s ease-out forwards;
+}
+
+.fade-section {
+    opacity: 0;
+    transform: translateY(40px); /* Pushed down slightly */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);    /* Settles into its normal position */
+}
+
+.scroll-section {
+    opacity: 0;
+    transform: translateY(50px); /* Starts 50px lower */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Triggered class added by JavaScript */
+.scroll-section.is-visible {
+    opacity: 1;
+    transform: translateY(0);    /* Glides into place */
+}
+
+header{
+  text-align: center;
+  background-color: #af604f;
+  color: #efe4d2;
+  font-size: 30px;
+  font-family: "Almendra", serif;
+}
+
+.header-banner {
+  display: flex;
+  align-items: center;        /* Vertically centers images and title */
+  justify-content: space-between; /* Pushes outer items to edges, centers content */
+  width: 100%;                /* Full width container */
+  max-width: 500px;           /* Optional: limits max width */
+  margin-left: 250px;
+  margin-right: 250px;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.banner-title {
+    flex-grow: 1;               /* Allows the title to take up remaining central space */
+    text-align: center;         /* Ensures the text itself is perfectly centered */
+}
+
+.banner-img {
+    width: 300px;               /* Adjust size as needed */
+    height: 300px;
+    border-radius: 10%;         
+    animation: float 3s ease-in-out infinite; /* Smooth floating animation */
+}
+
+h1 {
+  font-family: "Fleur De Leah", cursive;
   background-color: #af604f;
   color: #efe4d2;
   text-align: center;
   padding: 20px;
-  font-size: 30px;
+  font-size: 80px;
+  letter-spacing: 5px;
+  animation: float 3s ease-in-out infinite; /* Smooth floating animation */
 }
 
 body {
@@ -50,36 +132,34 @@ section {
 }
 
 .section3 {
+  display: flow-root;
   background-color: #e29068;
   color: #efe4d2;
-  padding: 20px;
-  text-align: left;
+  padding: 50px;
+  text-align: right;
   font-family: "Georgia", serif;
+}
+
+.left-img {
+  float: left;
+  width: 200px;       /* Sets a fixed width for the image */
+  height: 200px;       /* Keeps the original aspect ratio so it doesn't stretch */
+  object-fit: cover;        /* Automatically crops the edges to fill the container */
+  object-position: center;  /* Keeps the center of the image in view */
+  border-radius: 8px; /* Optional: rounds the corners */
+}
+
+.right-img {
+  float: right;
+  width: 200px;       /* Sets a fixed width for the image */
+  height: 200px;       /* Keeps the original aspect ratio so it doesn't stretch */
+  object-fit: cover;        /* Automatically crops the edges to fill the container */
+  object-position: center;  /* Keeps the center of the image in view */
+  border-radius: 8px; /* Optional: rounds the corners */
 }
 
 .section4 {
+  display: flow-root;
   background-color: #af604f;
   color: #efe4d2;
-  padding: 20px;
-  text-align: left;
-  font-family: "Georgia", serif;
-}
-
-button {
-  font-family: "Georgia", serif;
-  background-color: #efe4d2;
-  color: #584849;
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-}
-
-dialog {
-  background-color: #efe4d2;
-  color: #584849;
-  padding: 20px;
-  border: none;
-  border-radius: 10px;
-  max-width: 400px;
-  margin: 0 auto;
-}
+  padding: 50px;
