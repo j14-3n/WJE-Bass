@@ -67,8 +67,14 @@ header{
 }
 
 .banner-img {
-    width: 300px;               /* Adjust size as needed */
-    height: 400px;
+    width: if(
+        media(width >= 768px): 300px;
+        else: 140px
+    );               /* Adjust size as needed */
+    height: if(
+        media(width >= 768px): 400px;
+        else: 187px
+    );    
     border-radius: 10%;         
     animation: float 3s ease-in-out infinite; /* Smooth floating animation */
 }
