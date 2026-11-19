@@ -131,7 +131,7 @@ section {
   background-color: #e29068;
   color: #efe4d2;
   padding: 50px;
-  text-align: right;
+  text-align: center;
   font-family: "Georgia", serif;
 }
 
@@ -158,7 +158,7 @@ section {
   background-color: #af604f;
   color: #efe4d2;
   padding: 50px;
-  text-align: left;
+  text-align: center;
   font-family: "Georgia", serif;
 }
 
@@ -184,7 +184,7 @@ dialog {
 h3 {
   font-family: "Georgia", serif;
   color: #efe4d2;
-  text-align: left;
+  text-align: center;
 }
 
 .section5 {
@@ -399,4 +399,59 @@ body {
     justify-content: flex-end;
     gap: 8px;
     width: 25%;
+}
+
+@keyframes gentleFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px); /* Moves up 8px, then back down */
+    }
+}
+
+.three-column-layout {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
+    align-items: stretch;
+    gap: 8px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.photo-stack {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.photo-stack img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+    animation: gentleFloat 3.5s ease-in-out infinite;
+}
+
+/* Optional: stagger every second photo for a more organic wave */
+.photo-stack img:nth-child(even) {
+    animation-delay: -1.75s;
+}
+
+.center-article {
+    min-width: 0;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .three-column-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .photo-stack {
+        justify-content: flex-start;
+    }
 }
