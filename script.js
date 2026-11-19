@@ -95,3 +95,118 @@ document.addEventListener("DOMContentLoaded", function() {
         observer.observe(section);
     });
 });
+
+// Target ONLY the main dropdown parent link, NOT the sub-links inside it
+const dropdownToggle = document.querySelector('.dropdown > .nav-link');
+
+if (dropdownToggle) {
+    dropdownToggle.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevents page jump on the parent tab only
+        this.parentElement.classList.toggle('is-open');
+    });
+}
+
+let lastScrollTop = 0;
+const delta = 5.0; // Minimum scroll distance before triggering
+const navbar = document.querySelector(".nav-bar");
+const navbarHeight = navbar.offsetHeight;
+
+window.addEventListener("scroll", function() {
+    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
+    
+    // Prevent erratic behavior at the very top of the page
+    if (currentScroll <= 0) {
+        navbar.classList.remove("nav-hidden");
+        return;
+    }
+    
+    // Check if scroll difference is greater than the delta threshold
+    if (Math.abs(lastScrollTop - currentScroll) <= delta) {
+        return;
+    }
+    
+    // If scrolling down and past the navbar height, hide it
+    if (currentScroll > lastScrollTop && currentScroll > navbarHeight) {
+        navbar.classList.add("nav-hidden");
+    } 
+    // If scrolling up, show it
+    else if (currentScroll < lastScrollTop) {
+        navbar.classList.remove("nav-hidden");
+    }
+    
+    lastScrollTop = currentScroll;
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const audio = document.getElementById("bg-music");
+    const playPauseBtn = document.getElementById("play-pause-btn");
+    const seekBar = document.getElementById("seek-bar");
+    const volumeBar = document.getElementById("volume-bar");
+    const currentTimeEl = document.getElementById("current-time");
+    const durationEl = document.getElementById("duration");
+
+    audio.volume = volumeBar.value;
+    let userPaused = false;
+
+    // Format seconds into M:SS
+    function formatTime(seconds) {
+        if (isNaN(seconds)) return "0:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+    }
+
+    // Attempt autoplay; fallback to first click/keypress if browser blocks it
+    function startMusic() {
+        if (!userPaused && audio.paused) {
+            audio.play().then(() => {
+                playPauseBtn.textContent = "⏸";
+            }).catch(() => {
+                // Waiting for first user interaction
+            });
+        }
+    }
+
+    startMusic();
+    document.addEventListener("click", startMusic, { once: true });
+    document.addEventListener("keydown", startMusic, { once: true });
+
+    // Play / Pause Button
+    playPauseBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Prevents triggering the document click fallback
+        if (audio.paused) {
+            audio.play();
+            playPauseBtn.textContent = "⏸";
+            userPaused = false;
+        } else {
+            audio.pause();
+            playPauseBtn.textContent = "▶";
+            userPaused = true;
+        }
+    });
+
+    // Update timeline as song plays
+    audio.addEventListener("timeupdate", () => {
+        if (audio.duration) {
+            seekBar.value = (audio.currentTime / audio.duration) * 100;
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
+    });
+
+    // Load total track duration
+    audio.addEventListener("loadedmetadata", () => {
+        durationEl.textContent = formatTime(audio.duration);
+    });
+
+    // Scrub through the song
+    seekBar.addEventListener("input", () => {
+        if (audio.duration) {
+            audio.currentTime = (seekBar.value / 100) * audio.duration;
+        }
+    });
+
+    // Adjust volume
+    volumeBar.addEventListener("input", () => {
+        audio.volume = volumeBar.value;
+    });
+});
