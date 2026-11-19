@@ -59,11 +59,6 @@ header{
   align-items: center;        /* Vertically centers images and title */
   justify-content: space-between; /* Pushes outer items to edges, centers content */
   width: 100%;                /* Full width container */
-  max-width: 500px;           /* Optional: limits max width */
-  margin-left: 250px;
-  margin-right: 250px;
-  margin-top: 0;
-  margin-bottom: 0;
 }
 
 .banner-title {
@@ -73,7 +68,7 @@ header{
 
 .banner-img {
     width: 300px;               /* Adjust size as needed */
-    height: 300px;
+    height: 400px;
     border-radius: 10%;         
     animation: float 3s ease-in-out infinite; /* Smooth floating animation */
 }
@@ -163,3 +158,245 @@ section {
   background-color: #af604f;
   color: #efe4d2;
   padding: 50px;
+  text-align: left;
+  font-family: "Georgia", serif;
+}
+
+button {
+  font-family: "Georgia", serif;
+  background-color: #efe4d2;
+  color: #584849;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+dialog {
+  background-color: #efe4d2;
+  color: #584849;
+  padding: 20px;
+  border: none;
+  border-radius: 10px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+h3 {
+  font-family: "Georgia", serif;
+  color: #efe4d2;
+  text-align: left;
+}
+
+.section5 {
+  background-color: #584849;
+  color: #efe4d2;
+  padding: 50px;
+  text-align: left;
+  font-family: "Georgia", serif;
+}
+
+/* Container background and padding */
+.nav-bar {
+    background-color: #5f372e;
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index: 1000;
+    transform: translateY(0);
+    opacity: 0;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Visible state triggered by JavaScript scroll or mouse hover */
+.nav-bar.nav-hidden{
+  transform: translateY(-100%)
+}
+
+/* Remove default list bullets and spacing */
+.nav-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Place list items side-by-side */
+.nav-item {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+
+/* Style the links inside the tabs */
+.nav-link {
+    color: #efe4d2;
+    text-decoration: none;
+    padding: 8px 16px;
+    display: block;
+    transition: background-color 0.3s ease;
+    z-index: 1002;
+}
+
+/* Hover effect for interactive feedback */
+.nav-link:hover {
+    background-color: #e29068;
+    border-radius: 4px;
+}
+
+.dropdown-menu {
+    display: none;              /* Hidden by default */
+    position: absolute;         /* Takes it out of document flow to sit on top */
+    top: 100%;                  /* Positions it right below the parent tab */
+    left: 0;
+    background-color: #5f372e;     /* Dropdown background color */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    z-index: 9999;
+}
+
+.dropdown-link {
+    color: #efe4d2;
+    text-decoration: none;
+    padding: 10px 16px;
+    display: block;
+    white-space: nowrap;
+    z-index: 1001;
+}
+
+.dropdown-link:hover {
+    background-color: #af604f;     /* Highlight effect when hovering over sub-links */
+}
+
+/* Show the dropdown menu when hovering over the parent list item */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.custom-link:link {
+    color: #e29068;
+    text-decoration: none;
+}
+
+/* 2. Link that has already been clicked/visited */
+.custom-link:visited {
+    color: #af604f;
+}
+
+/* 3. When the mouse hovers over the link */
+.custom-link:hover {
+    color: #efe4d2;
+    text-decoration: underline; /* Adds an underline back on hover */
+}
+
+html {
+    scroll-behavior: smooth; /* Makes the page glide instead of instantly jumping */
+}
+
+/* Prevent the fixed player from covering the bottom of your page */
+body {
+    padding-bottom: 85px; 
+}
+
+.spotify-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 75px;
+    background-color: #5f372e; /* Spotify dark theme */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-top: 1px solid #5f372e;
+    z-index: 1000;
+    font-family: "Georgia", serif;
+}
+
+/* Left Section */
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 25%;
+}
+
+.album-art {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    object-fit: cover;
+}
+
+.track-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.track-artist {
+    font-size: 12px;
+    color: #b3b3b3;
+}
+
+/* Center Section */
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 50%;
+    gap: 6px;
+}
+
+.control-btn {
+    background-color: #efe4d2;
+    color: #584849;
+    border: none;
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease;
+}
+
+.control-btn:hover {
+    transform: scale(1.08);
+}
+
+.progress-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    max-width: 450px;
+    font-size: 11px;
+    color: #b3b3b3;
+}
+
+#seek-bar, #volume-bar {
+    accent-color: #e29068; /* Spotify green */
+    cursor: pointer;
+    height: 4px;
+}
+
+#seek-bar {
+    width: 100%;
+}
+
+/* Right Section */
+.volume-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    width: 25%;
+}
