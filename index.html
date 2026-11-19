@@ -8,7 +8,7 @@
 </head>
 <script src="script.js" defer></script>
 
-<header class="fade-section">
+<header id="home" class="fade-section">
   <p class="fade-in">Welcome to Wong Jia En's</p>
   <div class="header-banner">
     <img src="with eugenia.jpg" alt="WJE with Eugenia Lou" class="banner-img" title="With Ms Eugenia back in 2019!">
@@ -18,18 +18,35 @@
   <p class="fade-in"><i>on a journey of honing this craft</i></p>
 </header>
 
+<br>
+<nav class="nav-bar scroll-section">
+    <ul class="nav-list">
+        <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="#about-me" class="nav-link">About Me</a></li>
+        <li class="nav-item"><a href="#recent-proj" class="nav-link">Recent Projects</a></li>
+        <li class="nav-item dropdown">
+          <a href="#services" class="nav-link">Services</a>
+          <ul class="dropdown-menu">
+              <li><a href="#collab" class="dropdown-link">Collaboration</a></li>
+              <li><a href="#teaching" class="dropdown-link">Teaching</a></li>
+          </ul>
+        </li>
+        <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+</nav>
+
 <section class="scroll-section">
     Currently a first-year double bass major at UCSI University, pursuing a Bachelor Degree in Classical Music (with Hons.)
-    Studying under the guidance of Wolfgang Steike, and Yukari Sasada. <br>
+    <br>Studying under the guidance of Wolfgang Steike, and Yukari Sasada. <br>
     Open to collaborations, and always looking for new opportunities to grow as a musician. <br>
     Open to teaching, and sharing my knowledge with others. <br>
-    Contact me at <a href="mailto:jiaen06.01.16@gmail.com">jiaen06.01.16@gmail.com</a>
 </section>
+
 <br>
 
-<article class="scroll-section">
+<article id="about-me" class="scroll-section">
   <h2>About Me</h2>
-  <h4> A <b><i>not-so-long</i></b> journey, but a <b><i>meaningful</i></b> one.</h4>
+  <h4> A <b><i>not-so-long</i></b>, but a <b><i>meaningful</i></b> journey.</h4>
   <p>I began the double bass at the age of 13 (in 2019). It started
     in my high school wind band, where I met my first teacher - Eugenia Lou. 
     She inspired me to learn the bass at a deeper level,
@@ -51,12 +68,15 @@
     Greater opportunities came my way, where I was selected to play with the Asian Youth Orchestra in 2026, National Symphony Orchestra, and RondoFest 2026. <br>
     I hope to continue to grow as a musician, and to inspire others through my music. <br>
     <br>
-    Check out my <a href="https://www.instagram.com/j.en_dbass/">Instagram</a> for more updates on my journey as a double bassist! <br>
+    Check out my <a href="https://www.instagram.com/j.en_dbass/" class="custom-link">Instagram</a> for more updates on my journey as a double bassist! <br>
+    <br>
+    I have a few idols on the double bass (Rinat Ibragimov, Ödön Rácz and more), but Mikyung Sung is my favourite! <br>
+    The audio playing as you read my site is my favourite double bass piece played by my favourite double bass player!
   </p>
 </article>
 <br>
 <div class="scroll-section">
-  <section class="section2">
+  <section id="recent-proj" class="section2">
     <h2>Recent Projects</h2>
     <p>
       I have been working on a few projects recently, including:<br>
@@ -116,7 +136,7 @@
     </section>
   </section>
 </div>
-
+<br>
 <dialog id="MPYO pieces">
   <h4>Programme</h4>
   <p> 
@@ -183,4 +203,61 @@
     I also got the chance to perform in a trio with my friends, where we played Bach at the Double, and 2 other double bass ensemble pieces at the lunchtime recital.
   </p>
 </dialog>
+
+<section id="services" class="section2 scroll-section">
+  <h2>Services</h2>
+  <p>section still under construction</p>
+  <section id="collab" class="section4 scroll-section">
+    <h3>Collaboration</h3>
+    <p>I can work in a team.</p>
+  </section>
+  <section id="teaching" class="section4 scroll-section">
+    <h3>Teaching</h3>
+    <p>I can teach beginners up to intermediate students (ABRSM Grade 8).</p>
+  </section>
+</section>
+
+<br>
+
+<section id="contact" class="section5 scroll-section">
+  <h3>Contact Info</h3>
+  <p>For more information and other enquiries, please contact via: <br>
+    <br>Email: <a href="mailto:jiaen06.01.16@gmail.com" class="custom-link">jiaen06.01.16@gmail.com</a>
+    <br>DM on Instagram: <a href="https://www.instagram.com/j.en_dbass/" class="custom-link">j.en_dbass</a>
+  </p>
+</section>
+
+<!-- Fixed Bottom Music Player -->
+<div class="spotify-bar">
+    <!-- Left: Track Info -->
+    <div class="track-info">
+        <img src="mikyung.jpg" alt="Cover" class="album-art">
+        <div>
+            <div class="track-title">Capriccio di Bravura</div>
+            <div class="track-artist">Giovanni Bottesini, <br> Mikyung Sung, Jaemin Shin</div>
+        </div>
+    </div>
+
+    <!-- Center: Play/Pause & Progress Bar -->
+    <div class="player-controls">
+        <button id="play-pause-btn" class="control-btn">▶</button>
+        <div class="progress-wrapper">
+            <span id="current-time">0:00</span>
+            <input type="range" id="seek-bar" value="0" max="100">
+            <span id="duration">0:00</span>
+        </div>
+    </div>
+
+    <!-- Right: Volume -->
+    <div class="volume-controls">
+        <span>🔊</span>
+        <input type="range" id="volume-bar" min="0" max="1" step="0.05" value="0.5">
+    </div>
+
+    <!-- Actual Audio File (Loops automatically) -->
+    <audio id="bg-music" loop>
+        <source src="Bottesini Capriccio di Bravura.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
 </html>
