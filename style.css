@@ -69,11 +69,11 @@ header{
 .banner-img {
     width: if(
         media(width >= 768px): 300px;
-        else: 140px
+        else: 90px
     );               /* Adjust size as needed */
     height: if(
         media(width >= 768px): 400px;
-        else: 187px
+        else: 120px
     );    
     border-radius: 10%;         
     animation: float 3s ease-in-out infinite; /* Smooth floating animation */
@@ -150,6 +150,19 @@ section {
   border-radius: 8px; /* Optional: rounds the corners */
 }
 
+@media (max-width: 768px) {
+    .section3 {
+        flex-direction: column;
+        align-items: center;   /* Centers the image and text block horizontally */
+        text-align: center;    /* Centers the words inside the text block */
+    }
+
+    .left-img {
+        width: 100%;           /* Optional: lets image scale nicely on small screens */
+        max-width: 300px;      /* Prevents it from getting overly huge */
+    }
+}
+
 .right-img {
   float: right;
   width: 200px;       /* Sets a fixed width for the image */
@@ -166,6 +179,19 @@ section {
   padding: 50px;
   text-align: center;
   font-family: "Georgia", serif;
+}
+
+@media (max-width: 768px) {
+    .section4 {
+        flex-direction: column;
+        align-items: center;   /* Centers the image and text block horizontally */
+        text-align: center;    /* Centers the words inside the text block */
+    }
+
+    .right-img {
+        width: 100%;           /* Optional: lets image scale nicely on small screens */
+        max-width: 300px;      /* Prevents it from getting overly huge */
+    }
 }
 
 button {
@@ -201,80 +227,140 @@ h3 {
   font-family: "Georgia", serif;
 }
 
-/* Container background and padding */
-.nav-bar {
-    background-color: #5f372e;
+/* Top-right 3-line button */
+.hamburger-btn {
     position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    z-index: 1000;
-    transform: translateY(0);
+    top: 20px;
+    right: 24px;
+    z-index: 1001;
+    background: rgba(24, 24, 24, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 10px 9px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 38px;
+    height: 36px;
+    box-sizing: border-box;
+}
+
+.hamburger-btn span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: #efe4d2;
+    border-radius: 2px;
+}
+
+/* Translucent drop-down navigation layer */
+.nav-drawer {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(61, 61, 61, 0.62); /* Translucent over the page */
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1100;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Aligns navigation to the right */
+    padding: 80px 36px 40px;
+    box-sizing: border-box;
+    overflow-y: auto;
+
+    /* Hidden above screen until dropped down */
+    transform: translateY(-100%);
     opacity: 0;
-    transition: transform 0.3s ease-in-out;
+    visibility: hidden;
+    transition: transform 0.35s ease, opacity 0.35s ease, visibility 0.35s ease;
 }
 
-/* Visible state triggered by JavaScript scroll or mouse hover */
-.nav-bar.nav-hidden{
-  transform: translateY(-100%)
+.nav-drawer.is-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
 }
 
-/* Remove default list bullets and spacing */
+/* Top-right X close button */
+.close-btn {
+    position: fixed;
+    top: 18px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    color: #efe4d2;
+    font-size: 34px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 4px 10px;
+}
+
+/* Right-aligned navigation links */
 .nav-list {
     list-style: none;
     margin: 0;
     padding: 0;
+    text-align: right;
 }
 
-/* Place list items side-by-side */
 .nav-item {
-    display: inline-block;
-    position: relative;
-    margin-right: 10px;
+    margin-bottom: 14px;
 }
 
-/* Style the links inside the tabs */
+.nav-row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+}
+
 .nav-link {
     color: #efe4d2;
     text-decoration: none;
-    padding: 8px 16px;
-    display: block;
-    transition: background-color 0.3s ease;
-    z-index: 1002;
+    font-size: 22px;
+    padding: 6px 8px;
+    display: inline-block;
 }
 
-/* Hover effect for interactive feedback */
 .nav-link:hover {
-    background-color: #e29068;
-    border-radius: 4px;
+    color: #e29068;
 }
 
-.dropdown-menu {
-    display: none;              /* Hidden by default */
-    position: absolute;         /* Takes it out of document flow to sit on top */
-    top: 100%;                  /* Positions it right below the parent tab */
-    left: 0;
-    background-color: #5f372e;     /* Dropdown background color */
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+/* Sub-menu toggle button remains intact */
+.dropdown-trigger-btn {
+    background: rgba(255, 255, 255, 0.12);
+    border: none;
+    color: #efe4d2;
     border-radius: 4px;
-    z-index: 9999;
+    cursor: pointer;
+    padding: 4px 9px;
+    font-size: 16px;
+}
+
+/* Sub-menu (hidden until toggled) */
+.dropdown-menu {
+    display: none;
+    list-style: none;
+    margin: 6px 0 10px;
+    padding: 0 12px 0 0;
+    border-right: 2px solid #efe4d2;
+}
+
+.nav-item.is-open .dropdown-menu {
+    display: block;
 }
 
 .dropdown-link {
     color: #efe4d2;
     text-decoration: none;
-    padding: 10px 16px;
+    font-size: 17px;
+    padding: 5px 0;
     display: block;
-    white-space: nowrap;
-    z-index: 1001;
 }
 
 .dropdown-link:hover {
-    background-color: #af604f;     /* Highlight effect when hovering over sub-links */
+    color: #af604f;
 }
 
 /* Show the dropdown menu when hovering over the parent list item */
@@ -341,13 +427,19 @@ body {
 }
 
 .track-title {
-    font-size: 14px;
+    font-size: clamp(12px, 2.5vw, 14px);
     font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Shows "..." if a long title exceeds available width */
 }
 
 .track-artist {
-    font-size: 12px;
+    font-size: clamp(10px, 2vw, 12px);
     color: #b3b3b3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* Center Section */
@@ -407,42 +499,101 @@ body {
     width: 25%;
 }
 
+/* Desktop defaults (keeps play button & volume bar as-is) */
+.player-controls {
+    order: 2;
+}
+
+.volume-controls {
+    order: 3;
+}
+
+/* Mobile-only adjustments */
+@media (max-width: 600px) {
+    .spotify-bar {
+        padding: 0 10px;
+        gap: 8px;
+    }
+
+    /* 1. Track info stays on the left */
+    .track-info {
+        order: 1;
+        width: auto;
+        flex: 1 1 auto;
+        min-width: 0;
+        gap: 8px;
+    }
+
+    /* 2. Shrink play button and place it on the right */
+    .player-controls {
+        order: 2;
+        width: auto;
+        flex: 0 0 auto;
+        gap: 0;
+    }
+
+    .control-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+    }
+
+    /* Hide seek bar & timestamps on tiny screens so buttons fit cleanly */
+    .progress-wrapper {
+        display: none;
+    }
+
+    /* 3. Shrink volume control and place it on the far right */
+    .volume-controls {
+        order: 3;
+        width: auto;
+        flex: 0 0 auto;
+        justify-content: flex-end;
+        gap: 3px;
+        font-size: 12px;
+    }
+
+    #volume-bar {
+        width: 42px;
+        height: 3px;
+    }
+}
+
 @keyframes gentleFloat {
     0%, 100% {
         transform: translateY(0px);
     }
     50% {
-        transform: translateY(-8px); /* Moves up 8px, then back down */
+        transform: translateY(-8px);
     }
 }
 
 .three-column-layout {
     display: grid;
-    grid-template-columns: 220px minmax(0, 1fr) 220px;
+    grid-template-columns: 220px minmax(0, 1fr) 220px; /* Single-column photo sides on desktop */
     align-items: stretch;
-    gap: 8px;
+    gap: 28px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
 }
 
 .photo-stack {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr; /* 1 column on desktop */
+    align-content: space-between;
     gap: 16px;
 }
 
 .photo-stack img {
     width: 100%;
-    height: 180px;
+    height: 160px;
     object-fit: cover;
     border-radius: 8px;
     display: block;
     animation: gentleFloat 3.5s ease-in-out infinite;
 }
 
-/* Optional: stagger every second photo for a more organic wave */
 .photo-stack img:nth-child(even) {
     animation-delay: -1.75s;
 }
@@ -452,12 +603,14 @@ body {
     line-height: 1.6;
 }
 
+/* Mobile / smaller screens */
 @media (max-width: 900px) {
     .three-column-layout {
         grid-template-columns: 1fr;
     }
 
     .photo-stack {
-        justify-content: flex-start;
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on mobile */
+        align-content: start;
     }
 }
