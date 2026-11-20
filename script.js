@@ -96,45 +96,47 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 });
 
-// Target ONLY the main dropdown parent link, NOT the sub-links inside it
-const dropdownToggle = document.querySelector('.dropdown > .nav-link');
+document.addEventListener("DOMContentLoaded", () => {
+    const openBtn = document.getElementById("menu-open-btn");
+    const closeBtn = document.getElementById("menu-close-btn");
+    const drawer = document.getElementById("nav-drawer");
+    const triggerBtns = document.querySelectorAll(".dropdown-trigger-btn");
+    const navLinks = document.querySelectorAll(".nav-link, .dropdown-link");
 
-if (dropdownToggle) {
-    dropdownToggle.addEventListener('click', function(event) {
-        event.preventDefault(); // Prevents page jump on the parent tab only
-        this.parentElement.classList.toggle('is-open');
+    function openDrawer() {
+        drawer.classList.add("is-open");
+        drawer.setAttribute("aria-hidden", "false");
+    }
+
+    function closeDrawer() {
+        drawer.classList.remove("is-open");
+        drawer.setAttribute("aria-hidden", "true");
+    }
+
+    openBtn.addEventListener("click", openDrawer);
+    closeBtn.addEventListener("click", closeDrawer);
+
+    // Close the drawer right after clicking a navigation or sub-menu link
+    navLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            closeDrawer();
+        });
     });
-}
 
-let lastScrollTop = 0;
-const delta = 5.0; // Minimum scroll distance before triggering
-const navbar = document.querySelector(".nav-bar");
-const navbarHeight = navbar.offsetHeight;
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && drawer.classList.contains("is-open")) {
+            closeDrawer();
+        }
+    });
 
-window.addEventListener("scroll", function() {
-    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-    
-    // Prevent erratic behavior at the very top of the page
-    if (currentScroll <= 0) {
-        navbar.classList.remove("nav-hidden");
-        return;
-    }
-    
-    // Check if scroll difference is greater than the delta threshold
-    if (Math.abs(lastScrollTop - currentScroll) <= delta) {
-        return;
-    }
-    
-    // If scrolling down and past the navbar height, hide it
-    if (currentScroll > lastScrollTop && currentScroll > navbarHeight) {
-        navbar.classList.add("nav-hidden");
-    } 
-    // If scrolling up, show it
-    else if (currentScroll < lastScrollTop) {
-        navbar.classList.remove("nav-hidden");
-    }
-    
-    lastScrollTop = currentScroll;
+    // Sub-menu toggle button remains intact
+    triggerBtns.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            const parentItem = btn.closest(".nav-item");
+            parentItem.classList.toggle("is-open");
+        });
+    });
 });
 
 document.addEventListener("DOMContentLoaded", () => {
