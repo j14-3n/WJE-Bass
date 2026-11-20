@@ -19,8 +19,18 @@
 </header>
 
 <br>
-<nav class="nav-bar scroll-section">
-    <ul class="nav-list">
+
+<!-- Top-right 3-line toggle button -->
+<button type="button" id="menu-open-btn" class="hamburger-btn" aria-label="Open Navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+<nav id="nav-drawer" class="nav-drawer" aria-hidden="true">
+  <button type="button" id="menu-close-btn" class="close-btn" aria-label="Close Navigation">&times;</button>  
+  
+  <ul class="nav-list">
         <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
         <li class="nav-item"><a href="#about-me" class="nav-link">About Me</a></li>
         <li class="nav-item"><a href="#recent-proj" class="nav-link">Recent Projects</a></li>
@@ -141,10 +151,8 @@
     <section class="section3 scroll-section"> <b>RondoFest 2026</b>
       <img src="Rondo 2026 dbass.jpg" alt="Rondo 2026 Bassists" class="left-img" title="image by Rondo">
       <p>
-        <i>[29 May to 2 June 2026]</i>
-        <br> <br>
-        Performed as double bass tutti
-        <br>
+        <i>[29 May to 2 June 2026]</i> <br> <br>
+        Performed as double bass tutti <br>
       </p>
       <button id="RondoFest 2026">About</button>
       <br>
