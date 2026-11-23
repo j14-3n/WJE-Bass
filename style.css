@@ -384,6 +384,22 @@ h3 {
     text-decoration: underline; /* Adds an underline back on hover */
 }
 
+.links:link {
+    color: #5f372e;
+    text-decoration: none;
+}
+
+/* 2. Link that has already been clicked/visited */
+.links:visited {
+    color: #af604f;
+}
+
+/* 3. When the mouse hovers over the link */
+.links:hover {
+    color: #e29068;
+    text-decoration: underline; /* Adds an underline back on hover */
+}
+
 html {
     scroll-behavior: smooth; /* Makes the page glide instead of instantly jumping */
 }
